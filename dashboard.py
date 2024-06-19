@@ -59,7 +59,7 @@ if df is not None:
     # La clínica tiene que facturar material de contraste y descartable a veces en la especialidad incorrecta, no es
     # un error, sino que así lo deben hacer. Para el análisis hay que arreglarlo para obtener la cantidad correcta de
     # estudios:
-    df = df[df["centro"] != "centro traumatólogos neuquinos"]
+    df = df[df["Centro"] != "Centro Traumatólogos Neuquinos"]
 
     df.loc[(df["Practica"] == "Material de contraste para tomografía") & (
                 df["Especialidad"] == "Tomografia"), "Especialidad"] = "Contrastes"
