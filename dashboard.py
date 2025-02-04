@@ -5,7 +5,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
-from streamlit_option_menu import option_menu
 from matplotlib.pyplot import *
 
 st.set_page_config(page_title='Dashboard MEDXXI', page_icon=None, initial_sidebar_state="auto", menu_items=None)
@@ -281,7 +280,7 @@ if df is not None:
         new_df1 = new_df1.assign(Porcentaje_monto=lambda x: x['Monto Total'] / total_monto1 * 100)
         new_df1 = new_df1.assign(Ratio=lambda x: x['Porcentaje_monto'] / x['Porcentaje_cantidad'])
         new_df1 = new_df1.assign(Media_estudio=lambda x: x['Monto Total'] / x['Cantidad'])
-        new_df1['Media_estudio'] = new_df1['Media_estudio'].astype(int)
+        new_df1['Media_estudio'] = new_df1['Media_estudio'].fillna(0).astype(int)
 
 
         datos_por_equipo_dict[servicio] = new_df1
@@ -333,7 +332,7 @@ if df is not None:
         new_df = new_df.assign(Porcentaje_monto=lambda x: x['Monto Total'] / total_monto * 100)
         new_df = new_df.assign(Ratio=lambda x: x['Porcentaje_monto'] / x['Porcentaje_cantidad'])
         new_df = new_df.assign(Media_estudio=lambda x: x['Monto Total'] / x['Cantidad'])
-        new_df['Media_estudio'] = new_df['Media_estudio'].astype(int)
+        new_df['Media_estudio'] = new_df['Media_estudio'].fillna(0).astype(int)
 
         datos_por_os_dict[servicio] = new_df
         datos_por_os_grafico_dict[servicio] = fig
